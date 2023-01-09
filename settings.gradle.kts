@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "XMLNewsApp"
-include ':app'
+include (":app")

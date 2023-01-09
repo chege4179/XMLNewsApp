@@ -13,20 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.peterchege.xmlnewsapp
+package com.peterchege.xmlnewsapp.data.api
 
-import org.junit.Test
+import com.peterchege.xmlnewsapp.data.api.responses.NewsResponse
+import com.peterchege.xmlnewsapp.util.Constants
+import retrofit2.http.GET
+import retrofit2.http.Query
 
-import org.junit.Assert.*
+interface XMLNewsAppAPI {
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
+    @GET("top-headlines")
+    suspend fun getTopHeadlines(
+        @Query("country") country:String = "us",
+        @Query("apiKey") apiKey :String = Constants.API_KEY,
+        @Query("pageSize") pageSize:Int = 20,
+        @Query("page") page: Int
+    ): NewsResponse
+
 }

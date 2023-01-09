@@ -13,20 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.peterchege.xmlnewsapp
+package com.peterchege.xmlnewsapp.util
 
-import org.junit.Test
+object Constants {
 
-import org.junit.Assert.*
+    const val BASE_URL = "https://newsapi.org/v2/"
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
+    const val API_KEY = "b15ddbbe3ad74e4ca4363e2e4954a01d"
 }

@@ -13,20 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.peterchege.xmlnewsapp
+package com.peterchege.xmlnewsapp.domain.repository
 
-import org.junit.Test
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.peterchege.xmlnewsapp.data.respository.NewsRepositoryImpl
+import com.peterchege.xmlnewsapp.presentation.viewModels.NewsViewModel
 
-import org.junit.Assert.*
+class NewsViewModelProviderFactory(
+    private val newsRepository: NewsRepositoryImpl
+) : ViewModelProvider.Factory {
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return NewsViewModel(newsRepository) as T
     }
 }
