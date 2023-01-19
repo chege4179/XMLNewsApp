@@ -19,6 +19,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AbsListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -33,20 +34,29 @@ import com.peterchege.xmlnewsapp.presentation.MainActivity
 import com.peterchege.xmlnewsapp.presentation.adapters.NewsAdapter
 import com.peterchege.xmlnewsapp.presentation.viewModels.NewsViewModel
 import com.peterchege.xmlnewsapp.util.Resource
+import com.peterchege.xmlnewsapp.util.viewBinding
 import javax.inject.Inject
 
-class BreakingNewsFragment :Fragment(R.layout.fragment_breaking_news) {
+class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
-    lateinit var binding: FragmentBreakingNewsBinding
+    val binding by viewBinding(FragmentBreakingNewsBinding::bind)
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
 
     val TAG = "BreakingNewsFragment";
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentBreakingNewsBinding.inflate(layoutInflater)
+        //binding = FragmentBreakingNewsBinding.inflate(layoutInflater)
         viewModel = (activity as MainActivity).viewModel
 
         setupRecyclerView()
@@ -61,13 +71,14 @@ class BreakingNewsFragment :Fragment(R.layout.fragment_breaking_news) {
         }
 
         viewModel.breakingNews.observe(viewLifecycleOwner) { response ->
-            Log.e("Breaking News",response.toString())
+
             when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
-                        Log.e(TAG,"We here")
-                        newsAdapter.differ.submitList(newsResponse.toList())
+                        Log.e(TAG, "We here")
+
+                        newsAdapter.differ.submitList(newsResponse)
                     }
                 }
                 is Resource.Error -> {
@@ -82,6 +93,7 @@ class BreakingNewsFragment :Fragment(R.layout.fragment_breaking_news) {
             }
         }
     }
+
     var isError = false
     var isLoading = false
     var isLastPage = false
@@ -100,9 +112,10 @@ class BreakingNewsFragment :Fragment(R.layout.fragment_breaking_news) {
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
             val isNotAtBeginning = firstVisibleItemPosition >= 0
             val isTotalMoreThanVisible = totalItemCount >= 20
-            val shouldPaginate = isNoErrors && isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
-                    isTotalMoreThanVisible && isScrolling
-            if(shouldPaginate) {
+            val shouldPaginate =
+                isNoErrors && isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
+                        isTotalMoreThanVisible && isScrolling
+            if (shouldPaginate) {
                 viewModel.getBreakingNews("us")
                 isScrolling = false
             }
@@ -110,7 +123,7 @@ class BreakingNewsFragment :Fragment(R.layout.fragment_breaking_news) {
 
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                 isScrolling = true
             }
         }
@@ -131,8 +144,6 @@ class BreakingNewsFragment :Fragment(R.layout.fragment_breaking_news) {
             adapter = newsAdapter
             addOnScrollListener(this@BreakingNewsFragment.scrollListener)
         }
-        binding.rvBreakingNews.adapter = newsAdapter
-
 
 
     }

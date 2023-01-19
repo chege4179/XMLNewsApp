@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.peterchege.xmlnewsapp.domain.repository
+package com.peterchege.xmlnewsapp.presentation.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.peterchege.xmlnewsapp.data.respository.NewsRepositoryImpl
-import com.peterchege.xmlnewsapp.presentation.viewModels.NewsViewModel
 
 class NewsViewModelProviderFactory(
     private val newsRepository: NewsRepositoryImpl

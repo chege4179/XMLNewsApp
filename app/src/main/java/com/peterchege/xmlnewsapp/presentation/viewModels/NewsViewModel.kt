@@ -16,14 +16,15 @@
 package com.peterchege.xmlnewsapp.presentation.viewModels
 
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
 import com.peterchege.xmlnewsapp.data.api.responses.Article
-import com.peterchege.xmlnewsapp.data.api.responses.NewsResponse
 import com.peterchege.xmlnewsapp.data.respository.NewsRepositoryImpl
 import com.peterchege.xmlnewsapp.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -32,7 +33,7 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val repository: NewsRepositoryImpl
 
-) :ViewModel(){
+) : ViewModel(){
 
     val breakingNews: MutableLiveData<Resource<List<Article>>> = MutableLiveData()
 
@@ -54,15 +55,4 @@ class NewsViewModel @Inject constructor(
             breakingNews.postValue(Resource.Error(message =e.localizedMessage ?: "An error occurred io"))
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 }

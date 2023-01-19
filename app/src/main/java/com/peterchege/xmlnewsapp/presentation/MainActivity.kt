@@ -17,13 +17,9 @@ package com.peterchege.xmlnewsapp.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.peterchege.xmlnewsapp.R
 import com.peterchege.xmlnewsapp.data.api.XMLNewsAppAPI
 import com.peterchege.xmlnewsapp.data.respository.NewsRepositoryImpl
-import com.peterchege.xmlnewsapp.domain.repository.NewsRepository
-import com.peterchege.xmlnewsapp.domain.repository.NewsViewModelProviderFactory
 import com.peterchege.xmlnewsapp.presentation.viewModels.NewsViewModel
 import com.peterchege.xmlnewsapp.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,12 +43,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-
-
-
-
 
     }
 }

@@ -21,6 +21,9 @@ import android.content.SharedPreferences
 import android.provider.SyncStateContract
 import androidx.room.Room
 import com.peterchege.xmlnewsapp.data.api.XMLNewsAppAPI
+import com.peterchege.xmlnewsapp.data.respository.NewsRepositoryImpl
+import com.peterchege.xmlnewsapp.domain.repository.NewsRepository
+import com.peterchege.xmlnewsapp.presentation.viewModels.NewsViewModel
 import com.peterchege.xmlnewsapp.util.Constants
 import com.peterchege.xmlnewsapp.util.Constants.BASE_URL
 import dagger.Module
@@ -45,11 +48,14 @@ object AppModule {
     }
 //    @Provides
 //    @Singleton
-//    fun provideScrollMallDatabase(app: Application): ScrollMallDatabase {
-//        return Room.databaseBuilder(
-//            app,
-//            ScrollMallDatabase::class.java,
-//            SyncStateContract.Constants.DATABASE_NAME
-//        ).build()
+//    fun provideNewsRepository():NewsRepositoryImpl{
+//        return NewsRepositoryImpl(api = provideXMLNewsAppAPI())
 //    }
+
+//    @Provides
+//    @Singleton
+//    fun provideNewsViewModel(): NewsViewModel {
+//        return NewsViewModel(repository = provideNewsRepository())
+//    }
+
 }
