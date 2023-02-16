@@ -43,6 +43,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
 
+
     val TAG = "BreakingNewsFragment";
 
     override fun onCreateView(
@@ -59,7 +60,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         //binding = FragmentBreakingNewsBinding.inflate(layoutInflater)
         viewModel = (activity as MainActivity).viewModel
 
+        binding.appBarLayout.title.text = "My News App"
+        binding.appBarLayout.subtitle.text = "Latest News All across the Globe"
+
         setupRecyclerView()
+
+
         newsAdapter.setOnItemClickListener {
 //            val bundle = Bundle().apply {
 //                putSerializable("article", it)

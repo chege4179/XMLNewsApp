@@ -26,12 +26,14 @@
             android:orientation="vertical">
 
             <TextView
+
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="start"
                 android:singleLine="true"
                 android:textSize="@dimen/toolbar_title_text_size"
+                android:textColor="@color/black"
                 tools:text="Toolbar title" />
 
             <TextView
@@ -40,8 +42,10 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="start"
                 android:singleLine="true"
-                android:visibility="gone"
+
+                android:textColor="@color/black"
                 tools:text="Toolbar subtitle"
+
                 tools:visibility="visible" />
 
         </LinearLayout>
